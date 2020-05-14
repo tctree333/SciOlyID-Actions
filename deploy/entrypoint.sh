@@ -17,9 +17,12 @@ if [ "$INPUT_ENABLE_SENTRY" == "1" ]; then
     export SENTRY_ORG="$INPUT_SENTRY_ORG"
     VERSION=$(sentry-cli releases propose-version)
 
-    for project in $INPUT_SENTRY_PROJECTS; do
-        sentry-cli releases new -p project $VERSION
-    done
+    if [[ -z "${INPUT_SENTRY_PROJECT_2}" ]]; then
+        sentry-cli releases new -p $INPUT_SENTRY_PROJECT_1 $VERSION
+    else
+        sentry-cli releases new -p $INPUT_SENTRY_PROJECT_1 -p $INPUT_SENTRY_PROJECT_2 $VERSION
+    fi
+
     sentry-cli releases set-commits --auto $VERSION
     sentry-cli releases finalize $VERSION
 fi
@@ -34,7 +37,7 @@ machine git.heroku.com
   login $INPUT_HEROKU_EMAIL
   password $INPUT_HEROKU_TOKEN" >~/.netrc
 
-    export $HEROKU_REDIS_URL=$(heroku redis:credentials -a $INPUT_HEROKU_APP_NAME)
+    export HEROKU_REDIS_URL="$(heroku redis:credentials -a $INPUT_HEROKU_APP_NAME)"
     ssh -i ~/.ssh/id_rsa dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
 fi
 

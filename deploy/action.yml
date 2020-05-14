@@ -27,7 +27,10 @@ inputs:
   sentry org:
     description: "Sentry Organization Name"
     required: false
-  sentry projects:
+  sentry project 1:
+    description: "Sentry Projects to push the release to"
+    required: false
+  sentry project 2:
     description: "Sentry Projects to push the release to"
     required: false
 
