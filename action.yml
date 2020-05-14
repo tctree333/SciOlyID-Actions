@@ -1,0 +1,50 @@
+name: "SciOlyID Actions"
+author: "Tomi Chen"
+description: "Custom pipeline for deploying SciOlyID Bots"
+
+branding:
+  icon: "upload-cloud"
+  color: "green"
+
+inputs:
+  dokku app name:
+    description: "Name of dokku app"
+    required: true
+  dokku host:
+    description: "IP or domain of dokku server"
+    required: true
+  ssh private key:
+    description: "SSH private key to access dokku"
+    required: true
+
+  enable sentry:
+    description: "Add Sentry Release"
+    required: false
+    default: 1
+  sentry auth:
+    description: "Sentry Token"
+    required: false
+  sentry org:
+    description: "Sentry Organization Name"
+    required: false
+  sentry projects:
+    description: "Sentry Projects to push the release to"
+    required: false
+
+  enable update redis:
+    description: "Update REDIS_URL"
+    required: false
+    default: 1
+  heroku email:
+    description: "Email to access heroku account (see ~/.netrc)"
+    required: false
+  heroku token:
+    description: "Token to access heroku account (see ~/.netrc)"
+    required: false
+  heroku app name:
+    description: "Name of heroku app"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
