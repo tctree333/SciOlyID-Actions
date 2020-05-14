@@ -1,5 +1,5 @@
-#!/bin/sh
-set -u
+#!/bin/bash
+
 # Setup ssh
 mkdir ~/.ssh
 touch ~/.ssh/known_hosts
@@ -7,6 +7,7 @@ echo $INPUT_SSH_PRIVATE_KEY >~/.ssh/id_rsa
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/known_hosts
 chmod 600 ~/.ssh/id_rsa
+ssh-add "~/.ssh/id_rsa"
 ssh-keyscan $INPUT_DOKKU_HOST >>~/.ssh/known_hosts
 
 if [ "$INPUT_ENABLE_SENTRY" == "1" ]; then
