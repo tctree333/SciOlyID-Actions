@@ -8,7 +8,7 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/known_hosts
 chmod 600 ~/.ssh/id_rsa
 ssh-add "~/.ssh/id_rsa"
-ssh-keyscan $INPUT_DOKKU_HOST >>~/.ssh/known_hosts
+ssh-keyscan $INPUT_DOKKU_HOST >> ~/.ssh/known_hosts
 
 if [ "$INPUT_ENABLE_SENTRY" == "1" ]; then
     echo "### ADDING SENTRY RELEASE ###"
@@ -38,7 +38,7 @@ machine git.heroku.com
   password $INPUT_HEROKU_TOKEN" >~/.netrc
 
     export HEROKU_REDIS_URL="$(heroku redis:credentials -a $INPUT_HEROKU_APP_NAME)"
-    ssh -i ~/.ssh/id_rsa dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
+    ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
 fi
 
 echo "### DEPLOYING TO DOKKU ###"
