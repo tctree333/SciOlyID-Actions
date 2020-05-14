@@ -1,0 +1,11 @@
+name: "SciOlyID Actions - Test"
+author: "Tomi Chen"
+description: "Custom pipeline for testing SciOlyID Bots"
+
+branding:
+  icon: "terminal"
+  color: "green"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
