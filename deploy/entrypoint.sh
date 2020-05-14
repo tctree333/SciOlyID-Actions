@@ -9,7 +9,7 @@ chmod 600 ~/.ssh/known_hosts
 chmod 600 ~/.ssh/id_rsa
 ssh-keyscan $INPUT_DOKKU_HOST >>~/.ssh/known_hosts
 
-if [$INPUT_ENABLE_SENTRY -eq "1"]; then
+if [$INPUT_ENABLE_SENTRY == "1"]; then
     echo "### ADDING SENTRY RELEASE ###"
 
     export SENTRY_AUTH_TOKEN="$INPUT_SENTRY_AUTH"
@@ -23,7 +23,7 @@ if [$INPUT_ENABLE_SENTRY -eq "1"]; then
     sentry-cli releases finalize $VERSION
 fi
 
-if [$INPUT_ENABLE_UPDATE_REDIS -eq "1"]; then
+if [$INPUT_ENABLE_UPDATE_REDIS == "1"]; then
     echo "### UPDATING REDIS_URL ###"
     echo \
         "machine api.heroku.com
@@ -38,4 +38,4 @@ machine git.heroku.com
 fi
 
 echo "### DEPLOYING TO DOKKU ###"
-git push dokku@"$INPUT_DOKKU_HOST":"$INPUT_DOKKU_APP_NAME" master
+GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 22" git push dokku@$INPUT_DOKKU_HOST:$INPUT_DOKKU_APP_NAME master:master
