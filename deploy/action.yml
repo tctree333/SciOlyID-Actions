@@ -19,7 +19,7 @@ inputs:
 
   enable sentry:
     description: "Add Sentry Release"
-    required: false
+    required: true
     default: 1
   sentry auth:
     description: "Sentry Token"
@@ -33,7 +33,7 @@ inputs:
 
   enable update redis:
     description: "Update REDIS_URL"
-    required: false
+    required: true
     default: 1
   heroku email:
     description: "Email to access heroku account (see ~/.netrc)"
