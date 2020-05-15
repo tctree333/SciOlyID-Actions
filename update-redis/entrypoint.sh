@@ -36,4 +36,4 @@ echo "Test"
 ssh-keygen -l -f "$HOME/.ssh/server_key"
 
 echo "### Updating REDIS_URL ###"
-ssh -vvv -o UserKnownHostsFile=/dev/null -i "$HOME/.ssh/server_key" dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
+ssh -vvv -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i "$HOME/.ssh/server_key" dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
