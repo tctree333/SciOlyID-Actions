@@ -4,9 +4,11 @@
 mkdir ~/.ssh
 touch ~/.ssh/known_hosts
 echo $INPUT_SSH_PRIVATE_KEY >~/.ssh/id_rsa
+echo $INPUT_SSH_PUBLIC_KEY >~/.ssh/id_rsa.pub
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/known_hosts
 chmod 600 ~/.ssh/id_rsa
+chmod 600 ~/.ssh/id_rsa.pub
 ssh-add "~/.ssh/id_rsa"
 ssh-keyscan $INPUT_DOKKU_HOST >> ~/.ssh/known_hosts
 
