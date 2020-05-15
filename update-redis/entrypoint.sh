@@ -19,7 +19,7 @@ chmod 600 "$HOME/.ssh/server_key.pub"
 
 echo "### Adding keys ###"
 eval $(ssh-agent)
-ssh-add -vvv "$HOME/.ssh/server_key"
+ssh-add "$HOME/.ssh/server_key"
 ssh-keyscan $INPUT_DOKKU_HOST >>"$HOME/.ssh/known_hosts"
 
 echo "### UPDATING REDIS_URL ###"
