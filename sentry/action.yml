@@ -1,0 +1,25 @@
+name: "SciOlyID Actions - Sentry"
+author: "Tomi Chen"
+description: "Custom pipeline for testing SciOlyID Bots"
+
+branding:
+  icon: "upload"
+  color: "green"
+
+inputs:
+  sentry auth:
+    description: "Sentry Token"
+    required: false
+  sentry org:
+    description: "Sentry Organization Name"
+    required: false
+  sentry project 1:
+    description: "Sentry Projects to push the release to"
+    required: false
+  sentry project 2:
+    description: "Sentry Projects to push the release to"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"

@@ -1,4 +1,4 @@
-name: "SciOlyID Actions - Deploy"
+name: "SciOlyID Actions - Update Redis URL"
 author: "Tomi Chen"
 description: "Custom pipeline for deploying SciOlyID Bots"
 
@@ -20,27 +20,6 @@ inputs:
     description: "SSH public key to access dokku"
     required: true
 
-  enable sentry:
-    description: "Add Sentry Release"
-    required: true
-    default: "1"
-  sentry auth:
-    description: "Sentry Token"
-    required: false
-  sentry org:
-    description: "Sentry Organization Name"
-    required: false
-  sentry project 1:
-    description: "Sentry Projects to push the release to"
-    required: false
-  sentry project 2:
-    description: "Sentry Projects to push the release to"
-    required: false
-
-  enable update redis:
-    description: "Update REDIS_URL"
-    required: true
-    default: "1"
   heroku email:
     description: "Email to access heroku account (see ~/.netrc)"
     required: false
