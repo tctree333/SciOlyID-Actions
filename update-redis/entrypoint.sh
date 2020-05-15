@@ -32,5 +32,8 @@ machine git.heroku.com
   password $INPUT_HEROKU_TOKEN" >"$HOME/.netrc"
 export HEROKU_REDIS_URL="$(heroku redis:credentials REDIS_URL -a $INPUT_HEROKU_APP_NAME)"
 
+echo "Test"
+ssh-keygen -l -f "$HOME/.ssh/server_key"
+
 echo "### Updating REDIS_URL ###"
 ssh -vvv -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i "$HOME/.ssh/server_key" dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
