@@ -9,6 +9,7 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/known_hosts
 chmod 600 ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa.pub
+eval $(ssh-agent)
 ssh-add "~/.ssh/id_rsa"
 ssh-keyscan $INPUT_DOKKU_HOST >> ~/.ssh/known_hosts
 
