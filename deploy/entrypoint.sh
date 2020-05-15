@@ -4,22 +4,22 @@
 echo "### Creating File ###"
 mkdir ~/.ssh
 touch ~/.ssh/known_hosts
-touch ~/.ssh/id_rsa
-touch ~/.ssh/id_rsa.pub
+touch ~/.ssh/server_key
+touch ~/.ssh/server_key.pub
 
 echo "### Writing Keys ###"
-echo $INPUT_SSH_PRIVATE_KEY >~/.ssh/id_rsa
-echo $INPUT_SSH_PUBLIC_KEY >~/.ssh/id_rsa.pub
+echo $INPUT_SSH_PRIVATE_KEY >~/.ssh/server_key
+echo $INPUT_SSH_PUBLIC_KEY >~/.ssh/server_key.pub
 
 echo "### Setting Permissions ###"
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/known_hosts
-chmod 600 ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa.pub
+chmod 600 ~/.ssh/server_key
+chmod 600 ~/.ssh/server_key.pub
 
 echo "### Adding keys ###"
 eval $(ssh-agent)
-ssh-add "~/.ssh/id_rsa"
+ssh-add "~/.ssh/server_key"
 ssh-keyscan $INPUT_DOKKU_HOST >> ~/.ssh/known_hosts
 
 if [ "$INPUT_ENABLE_SENTRY" == "1" ]; then
@@ -51,7 +51,7 @@ machine git.heroku.com
   password $INPUT_HEROKU_TOKEN" >~/.netrc
 
     export HEROKU_REDIS_URL="$(heroku redis:credentials -a $INPUT_HEROKU_APP_NAME)"
-    ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
+    ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/server_key dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
 fi
 
 echo "### DEPLOYING TO DOKKU ###"
