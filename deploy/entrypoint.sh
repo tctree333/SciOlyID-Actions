@@ -25,6 +25,7 @@ if [ "$INPUT_ENABLE_SENTRY" == "1" ]; then
 
     sentry-cli releases set-commits --auto $VERSION
     sentry-cli releases finalize $VERSION
+    sentry-cli releases deploys $VERSION new -e "Deploy to Dokku"
 fi
 
 if [ "$INPUT_ENABLE_UPDATE_REDIS" == "1" ]; then
