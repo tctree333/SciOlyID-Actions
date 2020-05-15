@@ -16,8 +16,8 @@ inputs:
   ssh private key:
     description: "SSH private key to access dokku"
     required: true
-  ssh private key:
-    description: "SSH private key to access dokku"
+  ssh public key:
+    description: "SSH public key to access dokku"
     required: true
 
   enable sentry:
