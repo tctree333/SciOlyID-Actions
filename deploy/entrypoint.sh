@@ -1,14 +1,23 @@
 #!/bin/bash
 
 # Setup ssh
+echo "### Creating File ###"
 mkdir ~/.ssh
 touch ~/.ssh/known_hosts
+touch ~/.ssh/id_rsa
+touch ~/.ssh/id_rsa.pub
+
+echo "### Writing Keys ###"
 echo $INPUT_SSH_PRIVATE_KEY >~/.ssh/id_rsa
 echo $INPUT_SSH_PUBLIC_KEY >~/.ssh/id_rsa.pub
+
+echo "### Setting Permissions ###"
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/known_hosts
 chmod 600 ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa.pub
+
+echo "### Adding keys ###"
 eval $(ssh-agent)
 ssh-add "~/.ssh/id_rsa"
 ssh-keyscan $INPUT_DOKKU_HOST >> ~/.ssh/known_hosts
