@@ -17,10 +17,9 @@ chmod 600 "$HOME/.ssh/known_hosts"
 chmod 600 "$HOME/.ssh/server_key"
 chmod 600 "$HOME/.ssh/server_key.pub"
 
-
-eval $(ssh-agent)
 echo "### Adding keys ###"
-ssh-add "$HOME/.ssh/server_key"
+eval $(ssh-agent)
+ssh-add -vvv "$HOME/.ssh/server_key"
 ssh-keyscan $INPUT_DOKKU_HOST >> "$HOME/.ssh/known_hosts"
 
 if [ "$INPUT_ENABLE_SENTRY" == "1" ]; then
