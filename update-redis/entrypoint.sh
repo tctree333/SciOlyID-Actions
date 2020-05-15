@@ -19,10 +19,10 @@ chmod 600 "$HOME/.ssh/server_key.pub"
 
 echo "### Adding keys ###"
 eval $(ssh-agent)
-ssh-add "$HOME/.ssh/server_key"
+#ssh-add "$HOME/.ssh/server_key"
 ssh-keyscan $INPUT_DOKKU_HOST >>"$HOME/.ssh/known_hosts"
 
-echo "### UPDATING REDIS_URL ###"
+echo "### Fetching REDIS_URL ###"
 echo \
   "machine api.heroku.com
   login $INPUT_HEROKU_EMAIL
@@ -30,6 +30,7 @@ echo \
 machine git.heroku.com
   login $INPUT_HEROKU_EMAIL
   password $INPUT_HEROKU_TOKEN" >"$HOME/.netrc"
-
 export HEROKU_REDIS_URL="$(heroku redis:credentials REDIS_URL -a $INPUT_HEROKU_APP_NAME)"
+
+echo "### Updating REDIS_URL ###"
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i "$HOME/.ssh/server_key" dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
