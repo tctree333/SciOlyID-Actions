@@ -17,8 +17,7 @@ chmod 600 "$HOME/.ssh/known_hosts"
 chmod 600 "$HOME/.ssh/server_key"
 chmod 600 "$HOME/.ssh/server_key.pub"
 
-cat "$HOME/.ssh/server_key"
-cat "$HOME/.ssh/server_key.pub"
+head -n2 "$HOME/.ssh/known_hosts" "$HOME/.ssh/server_key" "$HOME/.ssh/server_key.pub"
 
 echo "### Adding keys ###"
 eval $(ssh-agent)
