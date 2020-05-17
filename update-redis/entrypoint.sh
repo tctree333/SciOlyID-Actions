@@ -15,15 +15,15 @@ echo "### Setting Permissions ###"
 chmod 700 "$HOME/.ssh"
 chmod 600 "$HOME/.ssh/known_hosts"
 chmod 600 "$HOME/.ssh/server_key"
-chmod 600 "$HOME/.ssh/server_key.pub"
+# chmod 600 "$HOME/.ssh/server_key.pub"
 
-wc -l "$HOME/.ssh/known_hosts"
-wc -l "$HOME/.ssh/server_key"
-wc -l "$HOME/.ssh/server_key.pub"
+# wc -l "$HOME/.ssh/known_hosts"
+# wc -l "$HOME/.ssh/server_key"
+# wc -l "$HOME/.ssh/server_key.pub"
 
-echo "### Adding keys ###"
-eval $(ssh-agent)
-ssh-add "$HOME/.ssh/server_key"
+# echo "### Adding keys ###"
+# eval $(ssh-agent)
+# ssh-add "$HOME/.ssh/server_key"
 ssh-keyscan $INPUT_DOKKU_HOST >>"$HOME/.ssh/known_hosts"
 
 echo "### Fetching REDIS_URL ###"
