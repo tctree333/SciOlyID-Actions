@@ -1,9 +1,9 @@
-name: "SciOlyID Actions - Update Redis URL"
+name: "SciOlyID Actions - Deploy to Dokku"
 author: "Tomi Chen"
 description: "Custom pipeline for deploying SciOlyID Bots"
 
 branding:
-  icon: "upload"
+  icon: "upload-cloud"
   color: "green"
 
 inputs:
@@ -16,16 +16,6 @@ inputs:
   ssh private key:
     description: "SSH private key to access dokku"
     required: true
-
-  heroku email:
-    description: "Email to access heroku account (see ~/.netrc)"
-    required: false
-  heroku token:
-    description: "Token to access heroku account (see ~/.netrc)"
-    required: false
-  heroku app name:
-    description: "Name of heroku app"
-    required: false
 
 runs:
   using: "docker"

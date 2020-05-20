@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setup ssh
-echo "### Creating File ###"
+echo "### Creating Files ###"
 mkdir "$HOME/.ssh"
 touch "$HOME/.ssh/known_hosts"
 

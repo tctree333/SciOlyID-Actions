@@ -1,4 +1,4 @@
-FROM debian:10
+FROM debian:10-slim
 
 RUN apt-get update && apt-get install -y openssh-client curl
 RUN curl https://cli-assets.heroku.com/install.sh | sh
