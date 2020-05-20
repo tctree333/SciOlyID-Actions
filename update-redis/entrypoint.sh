@@ -4,11 +4,11 @@
 echo "### Creating File ###"
 mkdir "$HOME/.ssh"
 touch "$HOME/.ssh/known_hosts"
-touch "$HOME/.ssh/server_key"
+#touch "$HOME/.ssh/server_key"
 #touch "$HOME/.ssh/server_key.pub"
 
 echo "### Writing Keys ###"
-echo $INPUT_SSH_PRIVATE_KEY >"$HOME/.ssh/server_key"
+echo $INPUT_SSH_PRIVATE_KEY > "$HOME/.ssh/server_key"
 #echo $INPUT_SSH_PUBLIC_KEY >"$HOME/.ssh/server_key.pub"
 
 echo "### Setting Permissions ###"
@@ -21,9 +21,9 @@ chmod 600 "$HOME/.ssh/server_key"
 # wc -l "$HOME/.ssh/server_key"
 # wc -l "$HOME/.ssh/server_key.pub"
 
-# echo "### Adding keys ###"
-# eval $(ssh-agent)
-# ssh-add "$HOME/.ssh/server_key"
+echo "### Adding keys ###"
+eval $(ssh-agent)
+ssh-add "$HOME/.ssh/server_key"
 ssh-keyscan $INPUT_DOKKU_HOST >> "$HOME/.ssh/known_hosts"
 
 echo "### Fetching REDIS_URL ###"
@@ -38,4 +38,4 @@ export HEROKU_REDIS_URL="$(heroku redis:credentials REDIS_URL -a $INPUT_HEROKU_A
 
 echo "### Updating REDIS_URL ###"
 #ssh -v -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i "$HOME/.ssh/server_key" dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
-ssh -v -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i "$HOME/.ssh/server_key" root@$INPUT_DOKKU_HOST -- ls
+ssh -v -o StrictHostKeyChecking=no root@$INPUT_DOKKU_HOST ls
