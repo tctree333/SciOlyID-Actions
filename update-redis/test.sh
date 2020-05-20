@@ -2,7 +2,7 @@
 
 set -e
 
-local SSH_PATH="$HOME/.ssh"
+SSH_PATH="$HOME/.ssh"
 
 mkdir -p "$SSH_PATH"
 touch "$SSH_PATH/known_hosts"
