@@ -5,11 +5,11 @@ echo "### Creating File ###"
 mkdir "$HOME/.ssh"
 touch "$HOME/.ssh/known_hosts"
 touch "$HOME/.ssh/server_key"
-touch "$HOME/.ssh/server_key.pub"
+#touch "$HOME/.ssh/server_key.pub"
 
 echo "### Writing Keys ###"
 echo $INPUT_SSH_PRIVATE_KEY >"$HOME/.ssh/server_key"
-echo $INPUT_SSH_PUBLIC_KEY >"$HOME/.ssh/server_key.pub"
+#echo $INPUT_SSH_PUBLIC_KEY >"$HOME/.ssh/server_key.pub"
 
 echo "### Setting Permissions ###"
 chmod 700 "$HOME/.ssh"
@@ -24,7 +24,7 @@ chmod 600 "$HOME/.ssh/server_key"
 # echo "### Adding keys ###"
 # eval $(ssh-agent)
 # ssh-add "$HOME/.ssh/server_key"
-ssh-keyscan $INPUT_DOKKU_HOST >>"$HOME/.ssh/known_hosts"
+ssh-keyscan $INPUT_DOKKU_HOST >> "$HOME/.ssh/known_hosts"
 
 echo "### Fetching REDIS_URL ###"
 echo \
