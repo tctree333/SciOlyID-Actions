@@ -4,22 +4,14 @@
 echo "### Creating File ###"
 mkdir "$HOME/.ssh"
 touch "$HOME/.ssh/known_hosts"
-#touch "$HOME/.ssh/server_key"
-#touch "$HOME/.ssh/server_key.pub"
 
 echo "### Writing Keys ###"
 echo "$INPUT_SSH_PRIVATE_KEY" > "$HOME/.ssh/server_key"
-#echo $INPUT_SSH_PUBLIC_KEY >"$HOME/.ssh/server_key.pub"
 
 echo "### Setting Permissions ###"
 chmod 700 "$HOME/.ssh"
 chmod 600 "$HOME/.ssh/known_hosts"
 chmod 600 "$HOME/.ssh/server_key"
-# chmod 600 "$HOME/.ssh/server_key.pub"
-
-# wc -l "$HOME/.ssh/known_hosts"
-# wc -l "$HOME/.ssh/server_key"
-# wc -l "$HOME/.ssh/server_key.pub"
 
 echo "### Adding keys ###"
 eval $(ssh-agent)
@@ -37,5 +29,4 @@ machine git.heroku.com
 export HEROKU_REDIS_URL="$(heroku redis:credentials REDIS_URL -a $INPUT_HEROKU_APP_NAME)"
 
 echo "### Updating REDIS_URL ###"
-#ssh -v -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i "$HOME/.ssh/server_key" dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
-ssh -v -o StrictHostKeyChecking=no root@$INPUT_DOKKU_HOST ls
+ssh -o StrictHostKeyChecking=no dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
