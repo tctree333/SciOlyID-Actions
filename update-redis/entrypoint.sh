@@ -25,8 +25,9 @@ echo \
   password $INPUT_HEROKU_TOKEN
 machine git.heroku.com
   login $INPUT_HEROKU_EMAIL
-  password $INPUT_HEROKU_TOKEN" >"$HOME/.netrc"
+  password $INPUT_HEROKU_TOKEN" > "$HOME/.netrc"
 export HEROKU_REDIS_URL="$(heroku redis:credentials REDIS_URL -a $INPUT_HEROKU_APP_NAME)"
 
 echo "### Updating REDIS_URL ###"
-ssh -o StrictHostKeyChecking=no dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL"
+ssh -o StrictHostKeyChecking=no dokku@$INPUT_DOKKU_HOST -- config:set -no-restart $INPUT_DOKKU_APP_NAME REDIS_URL="$HEROKU_REDIS_URL" > /dev/null
+echo "Done!"
