@@ -16,9 +16,6 @@ inputs:
   ssh private key:
     description: "SSH private key to access dokku"
     required: true
-  ssh public key:
-    description: "SSH public key to access dokku"
-    required: true
 
   heroku email:
     description: "Email to access heroku account (see ~/.netrc)"
