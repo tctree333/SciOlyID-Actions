@@ -19,5 +19,5 @@ ssh-add "$HOME/.ssh/server_key"
 ssh-keyscan "$INPUT_DOKKU_HOST" >> "$HOME/.ssh/known_hosts"
 
 echo "### Deploying to Dokku ###"
-GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push dokku@$INPUT_DOKKU_HOST:$INPUT_DOKKU_APP_NAME master:master --force
+GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push dokku@$INPUT_DOKKU_HOST:$INPUT_DOKKU_APP_NAME master:master
 echo "Done!"
