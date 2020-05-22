@@ -1,5 +1,4 @@
-FROM alpine:latest
-# FROM node:current-alpine
+FROM node:current-alpine
 
 RUN apk add --no-cache openssh-client curl && apk add --no-cache --upgrade bash
 RUN curl https://cli-assets.heroku.com/install.sh | sh
