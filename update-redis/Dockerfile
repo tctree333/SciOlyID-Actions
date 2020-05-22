@@ -1,6 +1,6 @@
-FROM debian:10-slim
+FROM alpine:latest
 
-RUN apt-get update && apt-get install -y openssh-client curl
+RUN apk add --no-cache openssh-client curl
 RUN curl https://cli-assets.heroku.com/install.sh | sh
 
 COPY entrypoint.sh /entrypoint.sh
