@@ -8,15 +8,7 @@ RUN apk add --no-cache curl \
                        python3-dev \
                        # Pillow dependencies
                        jpeg-dev \
-                       zlib-dev \
-                       freetype-dev \
-                       lcms2-dev \
-                       openjpeg-dev \
-                       tiff-dev \
-                       tk-dev \
-                       tcl-dev \
-                       harfbuzz-dev \
-                       fribidi-dev
+                       zlib-dev
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
