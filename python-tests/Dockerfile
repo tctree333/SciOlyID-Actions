@@ -4,7 +4,7 @@ RUN apk add --no-cache curl \
                        gcc \
                        musl-dev \
                        libffi-dev \
-                       # openssl-dev \
+                       openssl-dev \
                        python3-dev \
                        # Pillow dependencies
                        jpeg-dev \
