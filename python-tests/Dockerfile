@@ -1,14 +1,4 @@
-FROM python:3.7-alpine
-
-RUN apk add --no-cache curl \
-                       gcc \
-                       musl-dev \
-                       libffi-dev \
-                       openssl-dev \
-                       python3-dev \
-                       # Pillow dependencies
-                       jpeg-dev \
-                       zlib-dev
+FROM python:3.7-slim
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
