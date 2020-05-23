@@ -1,6 +1,6 @@
-FROM debian:10-slim
+FROM alpine:latest
 
-RUN apt-get update && apt-get install -y openssh-client git
+RUN apk add --no-cache openssh-client git
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
