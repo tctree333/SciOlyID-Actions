@@ -16,6 +16,10 @@ inputs:
   ssh private key:
     description: "SSH private key to access dokku"
     required: true
+  deploy branch:
+    description: "Branch to deploy to"
+    required: false
+    default: "master"
 
 runs:
   using: "docker"
